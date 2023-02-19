@@ -7,7 +7,7 @@ import { ValueSchema } from '../models/Value'
 class DbContext {
   Values = mongoose.model('Value', ValueSchema);
   Account = mongoose.model('Account', AccountSchema);
-  Galaxies = mongoose.model('Galaxies', GalaxySchema);
+  Galaxies = mongoose.model('Galaxy', GalaxySchema);
   Planets = mongoose.model('Planets', PlanetSchema)
 }
 

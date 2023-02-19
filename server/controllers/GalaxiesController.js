@@ -1,5 +1,6 @@
 import { dbContext } from "../db/DbContext.js";
 import { galaxiesService } from "../services/GalaxiesService.js";
+import { planetsService } from "../services/PlanetsService.js";
 import BaseController from "../utils/BaseController.js";
 
 export class GalaxiesController extends BaseController{
@@ -8,6 +9,17 @@ export class GalaxiesController extends BaseController{
         this.router
             .get('', this.getGalaxies)
             .post('', this.createGalaxy)
+            .get('/:galaxyId/planets', this.getPlanets)
+    }
+
+    async getPlanets(req, res, next){
+        try {
+            const galaxyId = req.params.galaxyId
+            const planets = await planetsService.getPlanetsByGalaxyId(galaxyId)
+            res.send(planets)
+        } catch (error) {
+            next(error)
+        }
     }
 
     async createGalaxy(req, res, next) {
